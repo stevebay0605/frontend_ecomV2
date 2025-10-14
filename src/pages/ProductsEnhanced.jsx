@@ -39,11 +39,14 @@ function Products() {
       if (selectedCategory) params.category = selectedCategory;
       if (search) params.search = search;
 
+      console.log('📡 Chargement des produits avec params:', params);
       const response = await getProducts(params);
+      console.log('✅ Réponse API:', response.data);
       setProducts(response.data.results || response.data);
       setTotalPages(Math.ceil((response.data.count || response.data.length) / productsPerPage));
     } catch (error) {
-      console.error('Erreur:', error);
+      console.error('❌ Erreur chargement produits:', error);
+      console.error('Détails:', error.response?.data);
       setError('Erreur lors du chargement des produits');
     } finally {
       setLoading(false);

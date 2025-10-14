@@ -4,7 +4,7 @@
  * @returns {string} - URL complète de l'image ou placeholder
  */
 export const getImageUrl = (imagePath) => {
-  if (!imagePath) return '/placeholder-product.svg';
+  if (!imagePath) return 'https://placehold.co/400x400/e5e7eb/64748b?text=No+Image';
   if (imagePath.startsWith('http')) return imagePath;
   
   const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -16,6 +16,6 @@ export const getImageUrl = (imagePath) => {
  * @param {Event} event - Événement d'erreur de l'image
  */
 export const handleImageError = (event) => {
-  event.target.src = '/placeholder-product.svg';
+  event.target.src = 'https://placehold.co/400x400/e5e7eb/64748b?text=Image+Not+Found';
   event.target.onerror = null; // Évite la boucle infinie
 };
